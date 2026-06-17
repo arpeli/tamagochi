@@ -1,4 +1,4 @@
-# Pixel Dev Pet (Tamagochi)
+# Pixel Dev Pet (Tamagotchi)
 
 A polished browser-based digital pet simulator built with **pure HTML, CSS, and JavaScript** for an Internet Programming assignment.
 
@@ -36,10 +36,10 @@ All bars deplete over time, and the user must keep the pet alive by choosing the
 
 ## File Structure
 
-- `/home/runner/work/tamagochi/tamagochi/index.html`
-- `/home/runner/work/tamagochi/tamagochi/styles.css`
-- `/home/runner/work/tamagochi/tamagochi/script.js`
-- `/home/runner/work/tamagochi/tamagochi/README.md`
+- `./index.html`
+- `./styles.css`
+- `./script.js`
+- `./README.md`
 
 ## How It Works
 

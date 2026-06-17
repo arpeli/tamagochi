@@ -125,7 +125,6 @@ function restart() {
   state.sleep = 75;
   state.quality = 85;
   state.running = true;
-  buttons.restart.disabled = false;
   updateUI();
 }
 
