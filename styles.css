@@ -1,0 +1,237 @@
+:root {
+  --bg: #080816;
+  --card: #14142a;
+  --card-soft: #1d1d3a;
+  --text: #f6f6ff;
+  --muted: #b8b8d6;
+  --accent: #59e1ff;
+  --accent-2: #ff7dcf;
+  --good: #7dffb3;
+  --warn: #ffd56f;
+  --bad: #ff7d95;
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 20%, #2a2a5f 0, transparent 35%),
+    radial-gradient(circle at 80% 10%, #511f6b 0, transparent 30%),
+    linear-gradient(160deg, #04040b, #0b0b22 40%, #11113a);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.app {
+  width: min(100%, 900px);
+}
+
+.app__header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  letter-spacing: 0.04em;
+}
+
+.app__header p {
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+.pet-card {
+  background: linear-gradient(150deg, var(--card), var(--card-soft));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  box-shadow: 0 20px 40px var(--shadow);
+  padding: 1.25rem;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.pet-stage {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  text-align: center;
+}
+
+.pixel-pet {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 0.6rem;
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, #ffe591, #ffb86a 55%, #ff967d),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06) 0,
+      rgba(255, 255, 255, 0.06) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  border: 4px solid #2f2f3f;
+  image-rendering: pixelated;
+  position: relative;
+  transition: transform 0.3s ease, filter 0.25s ease;
+}
+
+.pixel-pet.sad {
+  filter: saturate(0.75) brightness(0.85);
+}
+
+.pixel-pet.low {
+  animation: wobble 0.9s infinite;
+}
+
+.pet-eye,
+.pet-mouth {
+  position: absolute;
+  background: #2b233f;
+}
+
+.pet-eye {
+  width: 14px;
+  height: 14px;
+  top: 44px;
+}
+
+.pet-eye--left {
+  left: 34px;
+}
+
+.pet-eye--right {
+  right: 34px;
+}
+
+.pet-mouth {
+  width: 38px;
+  height: 10px;
+  left: 46px;
+  top: 82px;
+  border-radius: 0 0 8px 8px;
+}
+
+.pet-mood {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.status-board h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.status-row {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.7rem;
+}
+
+.status-row label {
+  font-weight: 600;
+}
+
+.bar-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+progress {
+  width: 100%;
+  height: 16px;
+  border: none;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+  background: #2b2b4b;
+  border-radius: 99px;
+}
+
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 99px;
+  transition: width 0.25s ease;
+}
+
+progress::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 99px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.7rem;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  background: linear-gradient(125deg, #57a5ff, #8d67ff);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(87, 165, 255, 0.22);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+button.secondary {
+  background: linear-gradient(125deg, #515171, #6d6d90);
+}
+
+.status-text {
+  margin: 0;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.7rem;
+  border-radius: 12px;
+  color: #d9d9ee;
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@media (max-width: 640px) {
+  .pet-card {
+    padding: 1rem;
+  }
+}

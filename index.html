@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Pet Tamagochi</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>Pixel Dev Pet</h1>
+        <p>Feed your coding companion and keep it healthy.</p>
+      </header>
+
+      <section class="pet-card" aria-label="Pet status dashboard">
+        <div class="pet-stage" id="petStage" aria-live="polite">
+          <div class="pixel-pet" id="pet" role="img" aria-label="Happy coding pet">
+            <span class="pet-eye pet-eye--left"></span>
+            <span class="pet-eye pet-eye--right"></span>
+            <span class="pet-mouth"></span>
+          </div>
+          <p class="pet-mood" id="petMood">Mood: Motivated</p>
+        </div>
+
+        <div class="status-board">
+          <h2>Status Bars</h2>
+
+          <div class="status-row">
+            <label for="hungerBar">Hunger / Coffee</label>
+            <div class="bar-wrap">
+              <progress id="hungerBar" max="100" value="80"></progress>
+              <span id="hungerValue">80%</span>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <label for="sleepBar">Sleep / Energy</label>
+            <div class="bar-wrap">
+              <progress id="sleepBar" max="100" value="75"></progress>
+              <span id="sleepValue">75%</span>
+            </div>
+          </div>
+
+          <div class="status-row">
+            <label for="qualityBar">Code Quality</label>
+            <div class="bar-wrap">
+              <progress id="qualityBar" max="100" value="85"></progress>
+              <span id="qualityValue">85%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="feedBtn" type="button">Give Snack/Coffee</button>
+          <button id="restBtn" type="button">Let Pet Sleep</button>
+          <button id="codeBtn" type="button">Practice Coding</button>
+          <button id="restartBtn" type="button" class="secondary">Restart</button>
+        </div>
+
+        <p class="status-text" id="statusText" aria-live="polite">
+          Keep the bars high to make your pet thrive.
+        </p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
