@@ -21,6 +21,8 @@ const buttons = {
   restart: document.getElementById("restartBtn"),
 };
 
+
+//set the default state of the pet 
 const state = {
   hunger: 80,
   sleep: 75,
@@ -36,6 +38,8 @@ function averageStatus() {
   return (state.hunger + state.sleep + state.quality) / 3;
 }
 
+
+//updating the bars 
 function updateUI() {
   Object.keys(bars).forEach((key) => {
     bars[key].value = state[key];
@@ -78,6 +82,7 @@ function updateUI() {
   }
 }
 
+//modifying the data
 function applyAction(action) {
   if (!state.running) {
     return;
@@ -104,6 +109,8 @@ function applyAction(action) {
   updateUI();
 }
 
+
+//gradually reduces the health bars 
 function decay() {
   if (!state.running) {
     return;
@@ -113,6 +120,7 @@ function decay() {
   state.sleep = clamp(state.sleep - 1);
   state.quality = clamp(state.quality - 2);
 
+  //kill the pet if one of the bars goes to zero 
   if (state.hunger === 0 || state.sleep === 0 || state.quality === 0) {
     state.running = false;
   }
