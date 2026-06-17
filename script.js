@@ -21,8 +21,7 @@ const buttons = {
   restart: document.getElementById("restartBtn"),
 };
 
-
-//set the default state of the pet 
+// Central game state used by every gameplay function.
 const state = {
   hunger: 80,
   sleep: 75,
@@ -30,16 +29,18 @@ const state = {
   running: true,
 };
 
+// Prevent values from going outside the progress bar bounds.
 function clamp(value) {
   return Math.max(0, Math.min(100, value));
 }
 
+// Mood is based on the average of all tracked stats.
 function averageStatus() {
   return (state.hunger + state.sleep + state.quality) / 3;
 }
 
 
-//updating the bars 
+// Render current game state into the UI.
 function updateUI() {
   Object.keys(bars).forEach((key) => {
     bars[key].value = state[key];
@@ -49,9 +50,11 @@ function updateUI() {
   const avg = averageStatus();
   const lowCount = [state.hunger, state.sleep, state.quality].filter((v) => v <= 25).length;
 
+  // Visual cues: dim pet when average is low, wobble when multiple bars are critical.
   pet.classList.toggle("sad", avg <= 45);
   pet.classList.toggle("low", lowCount >= 2);
 
+  // In game-over state, disable all actions except restart.
   if (!state.running) {
     petMood.textContent = "Mood: Burned Out";
     statusText.textContent = "Your pet crashed. Press Restart to begin a fresh sprint.";
@@ -67,6 +70,7 @@ function updateUI() {
     button.disabled = false;
   });
 
+  // Mood text and helper message are driven by current average health.
   if (avg >= 75) {
     petMood.textContent = "Mood: Motivated";
     statusText.textContent = "Excellent flow state! Keep the rhythm going.";
@@ -82,7 +86,7 @@ function updateUI() {
   }
 }
 
-//modifying the data
+// Apply a single player action and update related stats.
 function applyAction(action) {
   if (!state.running) {
     return;
@@ -110,7 +114,7 @@ function applyAction(action) {
 }
 
 
-//gradually reduces the health bars 
+// Automatic timer tick that slowly drains the bars.
 function decay() {
   if (!state.running) {
     return;
@@ -120,7 +124,7 @@ function decay() {
   state.sleep = clamp(state.sleep - 1);
   state.quality = clamp(state.quality - 2);
 
-  //kill the pet if one of the bars goes to zero 
+  // End the run when any key stat reaches zero.
   if (state.hunger === 0 || state.sleep === 0 || state.quality === 0) {
     state.running = false;
   }
@@ -136,10 +140,12 @@ function restart() {
   updateUI();
 }
 
+// Player input wiring.
 buttons.feed.addEventListener("click", () => applyAction("feed"));
 buttons.rest.addEventListener("click", () => applyAction("rest"));
 buttons.code.addEventListener("click", () => applyAction("code"));
 buttons.restart.addEventListener("click", restart);
 
+// Main game loop.
 setInterval(decay, 2500);
 updateUI();

@@ -24,6 +24,7 @@ body {
   background:
     radial-gradient(circle at 20% 20%, #2a2a5f 0, transparent 35%),
     radial-gradient(circle at 80% 10%, #511f6b 0, transparent 30%),
+    radial-gradient(circle at 50% 100%, #163d57 0, transparent 45%),
     linear-gradient(160deg, #04040b, #0b0b22 40%, #11113a);
   display: grid;
   place-items: center;
@@ -43,6 +44,7 @@ body {
   margin: 0;
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   letter-spacing: 0.04em;
+  text-shadow: 0 0 18px rgba(89, 225, 255, 0.32);
 }
 
 .app__header p {
@@ -58,6 +60,7 @@ body {
   padding: 1.25rem;
   display: grid;
   gap: 1.2rem;
+  backdrop-filter: blur(4px);
 }
 
 .pet-stage {
@@ -66,6 +69,18 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 1rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pet-stage__glow {
+  position: absolute;
+  inset: auto 0 -40px 0;
+  margin: auto;
+  width: min(90%, 360px);
+  height: 100px;
+  background: radial-gradient(circle, rgba(89, 225, 255, 0.25), transparent 70%);
+  pointer-events: none;
 }
 
 .pixel-pet {
@@ -86,6 +101,7 @@ body {
   image-rendering: pixelated;
   position: relative;
   transition: transform 0.3s ease, filter 0.25s ease;
+  box-shadow: 0 12px 28px rgba(255, 152, 125, 0.3);
 }
 
 .pixel-pet.sad {
@@ -133,6 +149,7 @@ body {
 .status-board h2 {
   margin: 0 0 0.75rem;
   font-size: 1.1rem;
+  letter-spacing: 0.02em;
 }
 
 .status-row {
@@ -143,6 +160,7 @@ body {
 
 .status-row label {
   font-weight: 600;
+  color: #ececff;
 }
 
 .bar-wrap {
@@ -152,10 +170,17 @@ body {
   gap: 0.7rem;
 }
 
+.bar-wrap span {
+  font-weight: 700;
+  color: #f3f3ff;
+  min-width: 3ch;
+  text-align: right;
+}
+
 progress {
   width: 100%;
   height: 16px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 99px;
   overflow: hidden;
 }
@@ -176,6 +201,21 @@ progress::-moz-progress-bar {
   border-radius: 99px;
 }
 
+.status-row--hunger progress::-webkit-progress-value,
+.status-row--hunger progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #ffc14f, #ff8f6b);
+}
+
+.status-row--sleep progress::-webkit-progress-value,
+.status-row--sleep progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #79b8ff, #7ea1ff);
+}
+
+.status-row--quality progress::-webkit-progress-value,
+.status-row--quality progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #7dffb3, #59e1ff);
+}
+
 .controls {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -191,11 +231,16 @@ button {
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 8px 16px rgba(55, 115, 235, 0.28);
 }
 
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 20px rgba(87, 165, 255, 0.22);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 button:disabled {
@@ -215,6 +260,7 @@ button.secondary {
   padding: 0.7rem;
   border-radius: 12px;
   color: #d9d9ee;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @keyframes wobble {

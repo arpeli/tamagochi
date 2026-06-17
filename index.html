@@ -10,11 +10,12 @@
     <main class="app">
       <header class="app__header">
         <h1>Pixel Dev Pet</h1>
-        <p>Feed your coding companion and keep it healthy.</p>
+        <p>Feed your coding companion and keep it in peak sprint shape.</p>
       </header>
 
       <section class="pet-card" aria-label="Pet status dashboard">
         <div class="pet-stage" id="petStage" aria-live="polite">
+          <div class="pet-stage__glow" aria-hidden="true"></div>
           <div class="pixel-pet" id="pet" role="img" aria-label="Happy coding pet">
             <span class="pet-eye pet-eye--left"></span>
             <span class="pet-eye pet-eye--right"></span>
@@ -26,7 +27,7 @@
         <div class="status-board">
           <h2>Status Bars</h2>
 
-          <div class="status-row">
+          <div class="status-row status-row--hunger">
             <label for="hungerBar">Hunger / Coffee</label>
             <div class="bar-wrap">
               <progress id="hungerBar" max="100" value="80"></progress>
@@ -34,7 +35,7 @@
             </div>
           </div>
 
-          <div class="status-row">
+          <div class="status-row status-row--sleep">
             <label for="sleepBar">Sleep / Energy</label>
             <div class="bar-wrap">
               <progress id="sleepBar" max="100" value="75"></progress>
@@ -42,7 +43,7 @@
             </div>
           </div>
 
-          <div class="status-row">
+          <div class="status-row status-row--quality">
             <label for="qualityBar">Code Quality</label>
             <div class="bar-wrap">
               <progress id="qualityBar" max="100" value="85"></progress>
